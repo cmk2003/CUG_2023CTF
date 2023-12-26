@@ -1,0 +1,5 @@
+进去代码审计，可以发现never.php这个，或者直接目录扫
+
+payload:Never.php?key=123
+
+$flag="flag{eAsy_Js_c0de_vIew}";
