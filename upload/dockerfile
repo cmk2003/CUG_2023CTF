@@ -1,0 +1,9 @@
+FROM registry.cn-hangzhou.aliyuncs.com/lxepoo/apache-php5
+
+RUN rm -rf /var/www/*
+ADD ./www /var/www/
+RUN rm -rf /usr/local/etc/php/conf.d/php.ini
+ADD ./php.ini /usr/local/etc/php/conf.d/
+RUN mkdir /var/www/upload   # 在/var/www/下创建upload目录
+RUN chown -R www-data:www-data /var/www/
+RUN echo flag{a87sfigasf97asgviajshdfuik} > /flag
