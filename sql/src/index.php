@@ -47,9 +47,26 @@ h1 {
     <?php
     error_reporting(0);
 
+
+    function blacklist($id)
+    {
+        $id= preg_replace('/[\/\*]/',"", $id);				//strip out /*
+        $id= preg_replace('/[--]/',"", $id);				//Strip out --.
+        $id= preg_replace('/[#]/',"", $id);					//Strip out #.
+        $id= preg_replace('/[ +]/',"", $id);	    		//Strip out spaces.
+//$id= preg_replace('/select/m',"", $id);	   		 	//Strip out spaces.
+//        $id= preg_replace('/[ +]/',"", $id);	    		//Strip out spaces.
+//        $id= preg_replace('/union\s+select/i',"", $id);	    //Strip out UNION & SELECT.
+//        echo "waf!!!";
+//        echo "<br>";
+        return $id;
+    }
+
     $servername = "127.0.0.1";
-    $username = "ctf";
-    $password = "qweasdzxczxcasdqwe";
+//    $username = "ctf";
+//    $password = "qweasdzxczxcasdqwe";
+    $username = "root";
+    $password = "123456";
     $dbname = "info";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -59,19 +76,19 @@ h1 {
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-
-        if (preg_match("/regexp|substr|file|into|load|updatexml|infor|\s+|right|left|insert|reverse|update/i", $id)) {
-            echo "<p class='error'>waf!!!</p>";
-            exit;
-        }
-
-        $id = '"' . $id . '"';
-        $sql = "SELECT * FROM users WHERE id=$id LIMIT 0,1";
+        $id= blacklist($id);
+        $sql="SELECT * FROM users WHERE id=('$id') LIMIT 0,1";
+//        echo $sql;
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_array($result);
 
         if ($row) {
-            echo '<br><span style="font-size: 20px; color: #f1c40f;">啊对对对</span><br>';
+//            echo '<br><span style="font-size: 20px; color: #f1c40f;">啊对对对</span><br>';
+            echo "<font size='5' color= '#99FF00'>";
+            echo 'Your Login name:'. $row['username'];
+//            echo "<br>";
+//            echo 'Your Password:' .$row['password'];
+//            echo "</font>";
         } else {
             echo '<br><span style="font-size: 20px; color: #f1c40f;">啊对对对</span><br>';
         }

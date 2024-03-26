@@ -1,6 +1,6 @@
 CREATE USER 'ctf'@'localhost' IDENTIFIED BY 'qweasdzxczxcasdqwe';
 
-CREATE DATABASE info;
+CREATE DATABASE info default character set utf8 collate utf8_general_ci;
 
 use info;
 
