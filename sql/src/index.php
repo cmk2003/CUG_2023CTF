@@ -63,10 +63,10 @@ h1 {
     }
 
     $servername = "127.0.0.1";
-//    $username = "ctf";
-//    $password = "qweasdzxczxcasdqwe";
-    $username = "root";
-    $password = "123456";
+    $username = "ctf";
+    $password = "qweasdzxczxcasdqwe";
+    // $username = "root";
+    // $password = "123456";
     $dbname = "info";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
